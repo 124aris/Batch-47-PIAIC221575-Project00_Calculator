@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import chalk from 'chalk';
 import inquirer from 'inquirer';
+console.clear();
 var operators;
 (function (operators) {
     operators["Add"] = "Addition";
@@ -15,7 +16,7 @@ async function NumberInput(message) {
             name: 'number',
             message,
             validate: (input) => {
-                return !isNaN(parseFloat(input)) && isFinite(input) ? true : chalk.redBright('Please enter a valid number.');
+                return !isNaN(parseFloat(input)) && isFinite(input) ? true : chalk.redBright('Please Enter A Valid Number.');
             },
         }]);
     return parseFloat(input.number);
@@ -24,14 +25,14 @@ async function NumberInput(message) {
 async function calculator() {
     console.log(chalk.yellowBright('Simple Calculator'));
     while (true) {
-        const firstNumber = await NumberInput(chalk.cyanBright('Enter the First Number:'));
+        const firstNumber = await NumberInput(chalk.cyanBright('Enter The First Number:'));
         const operator = (await inquirer.prompt([{
                 type: "list",
                 name: "operator",
-                message: chalk.blueBright("Select an Operator:"),
+                message: chalk.blueBright("Select An Operator:"),
                 choices: Object.values(operators),
             }])).operator;
-        const secondNumber = await NumberInput(chalk.cyanBright('Enter the Second Number:'));
+        const secondNumber = await NumberInput(chalk.cyanBright('Enter The Second Number:'));
         let result;
         switch (operator) {
             case operators.Add:
